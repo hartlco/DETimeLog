@@ -8,9 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var entryStore: EntryStore
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        List(entryStore.entries) { entry in
+            VStack(alignment: .leading) {
+                Text(entry.category)
+                Text(entry.formattedDuration)
+            }
+        }
+        .task {
+            entryStore.reduce(.load)
+        }
     }
 }
 

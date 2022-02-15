@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct DETimeLogApp: App {
+    let entryStore = EntryStore()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(entryStore)
         }
     }
 }
