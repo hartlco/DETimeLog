@@ -17,6 +17,7 @@ final class FileParser {
         // TODO: Fix, read line by line
         let lines = testString
             .components(separatedBy: "\n")
+            .sorted()
             .reversed()
         var entries: [Entry] = []
         for line in lines {
@@ -25,9 +26,7 @@ final class FileParser {
 
             entries.append(entry)
         }
-        return entries.sorted {
-            $0.date > $1.date
-        }
+        return entries
     }
 }
 

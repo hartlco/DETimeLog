@@ -36,6 +36,17 @@ struct Entry: Identifiable {
         formatter.allowedUnits = [.hour, .minute]
         return formatter.string(from: duration) ?? ""
     }
+
+    var minutes: Int {
+        guard let duration = duration else {
+            return 0
+        }
+
+
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.minute]
+        return Int(formatter.string(from: duration) ?? "0") ?? 0
+    }
 }
 
 extension Entry {
