@@ -10,11 +10,13 @@ import SwiftUI
 @main
 struct DETimeLogApp: App {
     let entryStore = EntryStore()
+    let appStore = AppStore()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(entryStore)
+                .environmentObject(appStore)
         }
     }
 }

@@ -19,6 +19,8 @@
 		C579026127BB8CCC00B4AEAE /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C579025F27BB8CCC00B4AEAE /* Entry.swift */; };
 		C579026327BB8CFA00B4AEAE /* FileParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C579026227BB8CFA00B4AEAE /* FileParser.swift */; };
 		C579026427BB8CFA00B4AEAE /* FileParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C579026227BB8CFA00B4AEAE /* FileParser.swift */; };
+		C5F57B0F27BE30CC008F3264 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F57B0E27BE30CC008F3264 /* AppStore.swift */; };
+		C5F57B1027BE30CC008F3264 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F57B0E27BE30CC008F3264 /* AppStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,7 @@
 		C579025A27BB8CA900B4AEAE /* EntryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryStore.swift; sourceTree = "<group>"; };
 		C579025F27BB8CCC00B4AEAE /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		C579026227BB8CFA00B4AEAE /* FileParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileParser.swift; sourceTree = "<group>"; };
+		C5F57B0E27BE30CC008F3264 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				C579025A27BB8CA900B4AEAE /* EntryStore.swift */,
+				C5F57B0E27BE30CC008F3264 /* AppStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -207,6 +211,7 @@
 				C579026027BB8CCC00B4AEAE /* Entry.swift in Sources */,
 				C579026327BB8CFA00B4AEAE /* FileParser.swift in Sources */,
 				C579025B27BB8CA900B4AEAE /* EntryStore.swift in Sources */,
+				C5F57B0F27BE30CC008F3264 /* AppStore.swift in Sources */,
 				C579024E27BB8C5D00B4AEAE /* ContentView.swift in Sources */,
 				C579024C27BB8C5D00B4AEAE /* DETimeLogApp.swift in Sources */,
 			);
@@ -219,6 +224,7 @@
 				C579026127BB8CCC00B4AEAE /* Entry.swift in Sources */,
 				C579026427BB8CFA00B4AEAE /* FileParser.swift in Sources */,
 				C579025C27BB8CA900B4AEAE /* EntryStore.swift in Sources */,
+				C5F57B1027BE30CC008F3264 /* AppStore.swift in Sources */,
 				C579024F27BB8C5D00B4AEAE /* ContentView.swift in Sources */,
 				C579024D27BB8C5D00B4AEAE /* DETimeLogApp.swift in Sources */,
 			);

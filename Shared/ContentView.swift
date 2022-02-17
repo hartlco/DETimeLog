@@ -28,6 +28,7 @@ extension Color {
 
 struct ContentView: View {
     @EnvironmentObject var entryStore: EntryStore
+    @EnvironmentObject var appStore: AppStore
 
     var body: some View {
         ScrollView {
@@ -35,7 +36,12 @@ struct ContentView: View {
                 ForEach(entryStore.entries) { entry in
                     HStack {
                         VStack(alignment: .leading) {
-                            Text(entry.category)
+                            HStack {
+                                Text(entry.category)
+                                    .font(.body)
+                                Text(entry.title)
+                                    .font(.caption)
+                            }
                             Text(entry.formattedDuration)
                         }
                         Spacer()
@@ -48,8 +54,29 @@ struct ContentView: View {
                 }
             }
         }
-        .task {
-            entryStore.reduce(.load)
+        .fileImporter(
+            isPresented: appStore.isOpeningFile,
+            allowedContentTypes: [.plainText],
+            allowsMultipleSelection: false
+        ) { result in
+            do {
+                // TODO: Reopen last opened file
+                guard let selectedFile: URL = try result.get().first else { return }
+                entryStore.reduce(.load(fileURL: selectedFile))
+            } catch {
+                print("Unable to read file contents")
+                print(error.localizedDescription)
+            }
+        }
+        .toolbar {
+            ToolbarItem {
+                Button {
+                    appStore.reduce(.showFileOpener)
+                } label: {
+                    Label("Open", systemImage: "folder.badge.plus")
+                }
+
+            }
         }
     }
 }

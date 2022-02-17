@@ -14,16 +14,16 @@ final class EntryStore: ObservableObject {
     }
 
     enum Action {
-        case load
+        case load(fileURL: URL)
     }
 
     @MainActor
     func reduce(_ action: Action) {
         switch action {
-        case .load:
+        case let .load(fileURL):
             Task {
                 do {
-                    state.entries = try await fileParser.parse()
+                    state.entries = try await fileParser.parse(fileURL: fileURL)
                 }
             }
         }
