@@ -17,6 +17,7 @@ struct DETimeLogApp: App {
             ContentView()
                 .environmentObject(entryStore)
                 .environmentObject(appStore)
+            // TODO: Add shortcut for opening file
         }
     }
 }

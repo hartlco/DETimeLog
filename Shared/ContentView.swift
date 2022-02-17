@@ -34,23 +34,26 @@ struct ContentView: View {
         ScrollView {
             LazyVStack(alignment: .leading) {
                 ForEach(entryStore.entries) { entry in
-                    HStack {
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Text(entry.category)
-                                    .font(.body)
-                                Text(entry.title)
-                                    .font(.caption)
+                    VStack(alignment: .leading) {
+                        HStack {
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Text(entry.category)
+                                        .font(.body)
+                                    Text(entry.title)
+                                        .font(.caption)
+                                }
+                                Text(entry.formattedDuration)
                             }
-                            Text(entry.formattedDuration)
+                            Spacer()
                         }
-                        Spacer()
+                        .frame(
+                            height: 20 + CGFloat(entry.minutes)
+                        )
+                        .background(Color.color(for: entry.category))
+                        .padding()
                     }
-                    .frame(
-                        height: 20 + CGFloat(entry.minutes)
-                    )
-                    .background(Color.color(for: entry.category))
-                    .padding()
+                    Text(entry.date.formatted())
                 }
             }
         }
@@ -75,7 +78,6 @@ struct ContentView: View {
                 } label: {
                     Label("Open", systemImage: "folder.badge.plus")
                 }
-
             }
         }
     }
