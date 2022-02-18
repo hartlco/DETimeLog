@@ -14,9 +14,11 @@ struct DETimeLogApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(entryStore)
-                .environmentObject(appStore)
+            NavigationView {
+                InitialContentView()
+            }
+            .environmentObject(entryStore)
+            .environmentObject(appStore)
             // TODO: Add shortcut for opening file
         }
     }

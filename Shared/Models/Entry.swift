@@ -10,7 +10,7 @@ import Foundation
 struct Entry: Identifiable {
     var date: Date
     // TODO: make sub-type
-    var category: String
+    var category: Category
     var title: String
     var description: String
 
@@ -63,7 +63,7 @@ extension Entry {
 
         self.date = date
         self.endDate = endDate
-        self.category = components[1]
+        self.category = Category(title: components[1])
         self.title = components.count > 2 ? components[2] : ""
         self.description = components.count > 3 ? components[3] : ""
     }

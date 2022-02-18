@@ -8,6 +8,10 @@
 import Foundation
 import SwiftUI
 
+enum ListType: Hashable, Equatable {
+    case all
+}
+
 final class EntryStore: ObservableObject {
     struct State {
         var entries: [Entry]

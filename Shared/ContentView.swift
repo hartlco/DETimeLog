@@ -8,8 +8,8 @@
 import SwiftUI
 
 extension Color {
-    static func color(for category: String) -> Color {
-        switch category {
+    static func color(for category: Category) -> Color {
+        switch category.title {
         case "bad":
             return Color.blue
         case "essen":
@@ -38,7 +38,7 @@ struct ContentView: View {
                         HStack {
                             VStack(alignment: .leading) {
                                 HStack {
-                                    Text(entry.category)
+                                    Text(entry.category.title)
                                         .font(.body)
                                     Text(entry.title)
                                         .font(.caption)
@@ -50,8 +50,8 @@ struct ContentView: View {
                         .frame(
                             height: 20 + CGFloat(entry.minutes)
                         )
-                        .background(Color.color(for: entry.category))
                         .padding()
+                        .background(Color.color(for: entry.category))
                     }
                     Text(entry.date.formatted())
                 }

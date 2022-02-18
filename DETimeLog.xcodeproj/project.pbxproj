@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C53DA1FC27BF88A000D86A71 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA1FB27BF88A000D86A71 /* Category.swift */; };
+		C53DA1FD27BF88A000D86A71 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA1FB27BF88A000D86A71 /* Category.swift */; };
+		C53DA20327BF898700D86A71 /* InitialContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA20227BF898700D86A71 /* InitialContentView.swift */; };
+		C53DA20427BF898700D86A71 /* InitialContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA20227BF898700D86A71 /* InitialContentView.swift */; };
+		C53DA20627BF8A5000D86A71 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA20527BF8A5000D86A71 /* SidebarView.swift */; };
+		C53DA20727BF8A5000D86A71 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA20527BF8A5000D86A71 /* SidebarView.swift */; };
 		C579024C27BB8C5D00B4AEAE /* DETimeLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C579023C27BB8C5B00B4AEAE /* DETimeLogApp.swift */; };
 		C579024D27BB8C5D00B4AEAE /* DETimeLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C579023C27BB8C5B00B4AEAE /* DETimeLogApp.swift */; };
 		C579024E27BB8C5D00B4AEAE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C579023D27BB8C5B00B4AEAE /* ContentView.swift */; };
@@ -24,6 +30,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C53DA1FB27BF88A000D86A71 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		C53DA20227BF898700D86A71 /* InitialContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialContentView.swift; sourceTree = "<group>"; };
+		C53DA20527BF8A5000D86A71 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		C579023C27BB8C5B00B4AEAE /* DETimeLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DETimeLogApp.swift; sourceTree = "<group>"; };
 		C579023D27BB8C5B00B4AEAE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C579023E27BB8C5D00B4AEAE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,6 +63,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C53DA20127BF897900D86A71 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C53DA20227BF898700D86A71 /* InitialContentView.swift */,
+				C53DA20527BF8A5000D86A71 /* SidebarView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C579023627BB8C5B00B4AEAE = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +84,7 @@
 		C579023B27BB8C5B00B4AEAE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				C53DA20127BF897900D86A71 /* Views */,
 				C579025E27BB8CB700B4AEAE /* Models */,
 				C579025D27BB8CAD00B4AEAE /* Store */,
 				C579023C27BB8C5B00B4AEAE /* DETimeLogApp.swift */,
@@ -106,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				C579025F27BB8CCC00B4AEAE /* Entry.swift */,
+				C53DA1FB27BF88A000D86A71 /* Category.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -211,9 +231,12 @@
 				C579026027BB8CCC00B4AEAE /* Entry.swift in Sources */,
 				C579026327BB8CFA00B4AEAE /* FileParser.swift in Sources */,
 				C579025B27BB8CA900B4AEAE /* EntryStore.swift in Sources */,
+				C53DA20327BF898700D86A71 /* InitialContentView.swift in Sources */,
 				C5F57B0F27BE30CC008F3264 /* AppStore.swift in Sources */,
+				C53DA20627BF8A5000D86A71 /* SidebarView.swift in Sources */,
 				C579024E27BB8C5D00B4AEAE /* ContentView.swift in Sources */,
 				C579024C27BB8C5D00B4AEAE /* DETimeLogApp.swift in Sources */,
+				C53DA1FC27BF88A000D86A71 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,9 +247,12 @@
 				C579026127BB8CCC00B4AEAE /* Entry.swift in Sources */,
 				C579026427BB8CFA00B4AEAE /* FileParser.swift in Sources */,
 				C579025C27BB8CA900B4AEAE /* EntryStore.swift in Sources */,
+				C53DA20427BF898700D86A71 /* InitialContentView.swift in Sources */,
 				C5F57B1027BE30CC008F3264 /* AppStore.swift in Sources */,
+				C53DA20727BF8A5000D86A71 /* SidebarView.swift in Sources */,
 				C579024F27BB8C5D00B4AEAE /* ContentView.swift in Sources */,
 				C579024D27BB8C5D00B4AEAE /* DETimeLogApp.swift in Sources */,
+				C53DA1FD27BF88A000D86A71 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

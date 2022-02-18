@@ -10,12 +10,14 @@ import SwiftUI
 
 final class AppStore: ObservableObject {
     struct State {
+        var selectedListType: ListType? = .all
         var isOpeningFile = false
     }
 
     enum Action {
         case showFileOpener
         case hideFileOpener
+        case setSelectedListType(ListType?)
     }
 
     func reduce(_ action: Action) {
@@ -24,6 +26,8 @@ final class AppStore: ObservableObject {
             state.isOpeningFile = true
         case .hideFileOpener:
             state.isOpeningFile = false
+        case let .setSelectedListType(type):
+            state.selectedListType = type
         }
     }
 
@@ -39,6 +43,15 @@ final class AppStore: ObservableObject {
             } else {
                 self.reduce(.hideFileOpener)
             }
+        }
+    }
+
+    var selectedListType: Binding<ListType?> {
+        Binding { [weak self] in
+            return self?.state.selectedListType
+        } set: { [weak self] type in
+            guard let self = self else { return }
+            self.reduce(.setSelectedListType(type))
         }
     }
 }
