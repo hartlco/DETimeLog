@@ -6,20 +6,28 @@
 //
 
 import SwiftUI
+import SwiftUIX
 
 struct SidebarView: View {
-    @EnvironmentObject var appStore: AppStore
+    @EnvironmentObject var appStore: AppViewStore
 
     var body: some View {
-        List(selection: appStore.selectedListType) {
-            Section("Header") {
+        List(selection: appStore.binding(get: \.selectedListType, send: { .setSelectedListType($0) })) {
+            Section("Entries") {
                 NavigationLink(
-                    destination: ContentView(),
-                    tag: ListType.all,
-                    selection: appStore.selectedListType
+                    destination: ContentView()
                 ) {
                     Label("All", systemImage: "tray.2")
                 }
+                .tag(ListType.all)
+            }
+            Section("Categories") {
+                NavigationLink(
+                    destination: CategoriesView()
+                ) {
+                    Label("Categories", systemImage: "tag")
+                }
+                .tag(ListType.categories)
             }
         }
         .listStyle(SidebarListStyle())

@@ -9,8 +9,16 @@ import SwiftUI
 
 @main
 struct DETimeLogApp: App {
-    let entryStore = EntryStore()
-    let appStore = AppStore()
+    let entryStore = EntryViewStore(
+        state: EntryState(),
+        environment: EntryEnvironment(fileParser: FileParser()),
+        reduceFunction: entryReducer
+    )
+    let appStore = AppViewStore(
+        state: AppState(),
+        environment: AppEnvironment(),
+        reduceFunction: appReducer
+    )
 
     var body: some Scene {
         WindowGroup {

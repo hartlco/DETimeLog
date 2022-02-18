@@ -7,6 +7,10 @@
 
 import Foundation
 
-struct Category {
+struct Category: Hashable, Identifiable {
     var title: String
+
+    var id: String {
+        title
+    }
 }

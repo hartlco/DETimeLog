@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "swiftuix",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftUIX/SwiftUIX",
+      "state" : {
+        "branch" : "master",
+        "revision" : "a334240fe264084eff8f34fa8ff7dde61d6c418c"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -27,8 +27,8 @@ extension Color {
 }
 
 struct ContentView: View {
-    @EnvironmentObject var entryStore: EntryStore
-    @EnvironmentObject var appStore: AppStore
+    @EnvironmentObject var entryStore: EntryViewStore
+    @EnvironmentObject var appStore: AppViewStore
 
     var body: some View {
         ScrollView {
@@ -58,14 +58,14 @@ struct ContentView: View {
             }
         }
         .fileImporter(
-            isPresented: appStore.isOpeningFile,
+            isPresented: appStore.isOpeningFileBinding,
             allowedContentTypes: [.plainText],
             allowsMultipleSelection: false
         ) { result in
             do {
                 // TODO: Reopen last opened file
                 guard let selectedFile: URL = try result.get().first else { return }
-                entryStore.reduce(.load(fileURL: selectedFile))
+                entryStore.send(.load(fileURL: selectedFile))
             } catch {
                 print("Unable to read file contents")
                 print(error.localizedDescription)
@@ -74,7 +74,7 @@ struct ContentView: View {
         .toolbar {
             ToolbarItem {
                 Button {
-                    appStore.reduce(.showFileOpener)
+                    appStore.send(.showFileOpener)
                 } label: {
                     Label("Open", systemImage: "folder.badge.plus")
                 }

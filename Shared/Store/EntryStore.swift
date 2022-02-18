@@ -8,35 +8,35 @@
 import Foundation
 import SwiftUI
 
+typealias EntryViewStore = ViewStore<EntryState, EntryAction, EntryEnvironment>
+
 enum ListType: Hashable, Equatable {
     case all
+    case categories
 }
 
-final class EntryStore: ObservableObject {
-    struct State {
-        var entries: [Entry]
-    }
+struct EntryState {
+    var entries: [Entry] = []
+    var categories: [Category] = []
+}
 
-    enum Action {
-        case load(fileURL: URL)
-    }
+enum EntryAction {
+    case load(fileURL: URL)
+}
 
-    @MainActor
-    func reduce(_ action: Action) {
-        switch action {
-        case let .load(fileURL):
-            Task {
-                do {
-                    state.entries = try await fileParser.parse(fileURL: fileURL)
-                }
-            }
+struct EntryEnvironment {
+    let fileParser: FileParser
+}
+
+let entryReducer: ReduceFunction<EntryState, EntryAction, EntryEnvironment> = { state, action, environment in
+    switch action {
+    case let .load(fileURL):
+        do {
+            let parseResult = try await environment.fileParser.parse(fileURL: fileURL)
+            state.entries = parseResult.entries
+            state.categories = parseResult.categories
+        } catch {
+            // TODO: Error handling
         }
-    }
-
-    private let fileParser = FileParser()
-    @Published private var state = State(entries: [])
-
-    var entries: [Entry] {
-        state.entries
     }
 }
