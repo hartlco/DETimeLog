@@ -11,7 +11,7 @@ import SwiftUI
 struct DETimeLogApp: App {
     let entryStore = EntryViewStore(
         state: EntryState(),
-        environment: EntryEnvironment(fileParser: FileParser()),
+        environment: EntryEnvironment(fileParser: FileParser(), colorStore: ColorStore(userDefaults: .standard)),
         reduceFunction: entryReducer
     )
     let appStore = AppViewStore(

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import ViewStore
 
 typealias AppViewStore = ViewStore<AppState, AppAction, AppEnvironment>
 

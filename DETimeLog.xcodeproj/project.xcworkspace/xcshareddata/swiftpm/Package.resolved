@@ -8,6 +8,15 @@
         "branch" : "master",
         "revision" : "a334240fe264084eff8f34fa8ff7dde61d6c418c"
       }
+    },
+    {
+      "identity" : "viewstore",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hartlco/ViewStore",
+      "state" : {
+        "branch" : "main",
+        "revision" : "aa02c4264e81984bd306484190fbe891ac47457c"
+      }
     }
   ],
   "version" : 2

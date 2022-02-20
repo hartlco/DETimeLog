@@ -7,25 +7,6 @@
 
 import SwiftUI
 
-extension Color {
-    static func color(for category: Category) -> Color {
-        switch category.title {
-        case "bad":
-            return Color.blue
-        case "essen":
-            return Color.green
-        case "social media":
-            return Color.red
-        case "arbeit":
-            return Color.orange
-        case "schlafen":
-            return .gray
-        default:
-            return .clear
-        }
-    }
-}
-
 struct ContentView: View {
     @EnvironmentObject var entryStore: EntryViewStore
     @EnvironmentObject var appStore: AppViewStore
@@ -51,7 +32,12 @@ struct ContentView: View {
                             height: 20 + CGFloat(entry.minutes)
                         )
                         .padding()
-                        .background(Color.color(for: entry.category))
+                        .background(.ultraThinMaterial)
+                        .background(
+                            SwiftUI.Color(
+                                cgColor: entryStore.colorsByCategory[entry.category] ?? CGColor(gray: 0.2, alpha:1.0)
+                            )
+                        )
                     }
                     Text(entry.date.formatted())
                 }

@@ -13,7 +13,19 @@ struct CategoriesView: View {
 
     var body: some View {
         List(entryStore.categories) { category in
-            Text(category.title)
+            CategoryView()
+                .environmentObject(
+                    entryStore.scope(
+                        state: { state in
+                            return CategoryColorState(
+                                category: category,
+                                color: entryStore.colorsByCategory[category] ?? CGColor.init(gray: 0.3, alpha: 1.0)
+                            )
+                        }, action: { action in
+                            return .categoryColorAction(category, action)
+                        }, scopedReducer: categoryColorReducer
+                    )
+                )
         }
         .fileImporter(
             isPresented: appStore.isOpeningFileBinding,
@@ -37,6 +49,23 @@ struct CategoriesView: View {
                     Label("Open", systemImage: "folder.badge.plus")
                 }
             }
+        }
+    }
+}
+
+struct CategoryView: View {
+    @EnvironmentObject var categoryColorViewStore: CategoryColorViewStore
+
+    @State var pickedColor = SwiftUI.Color.green
+
+    var body: some View {
+        HStack {
+            Text(categoryColorViewStore.category.title)
+            Spacer()
+            ColorPicker(
+                "Color",
+                selection: categoryColorViewStore.binding(get: \.color, send: { .changeColor(color: $0 ) })
+            )
         }
     }
 }
