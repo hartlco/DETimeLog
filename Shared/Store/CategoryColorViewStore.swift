@@ -22,6 +22,8 @@ let categoryColorReducer: ReduceFunction<CategoryColorState, CategoryColorAction
     case let .changeColor(color):
         state.color = color
     }
+
+    return .none
 }
 
 typealias CategoryColorViewStore = ViewStore<CategoryColorState, CategoryColorAction, EntryEnvironment>

@@ -29,7 +29,9 @@ enum AppAction {
     case setSelectedListType(ListType?)
 }
 
-struct AppEnvironment { }
+struct AppEnvironment {
+    let userDefaults: UserDefaults = .standard
+}
 
 let appReducer: ReduceFunction<AppState, AppAction, AppEnvironment> = { state, action, env in
     switch action {
@@ -40,4 +42,6 @@ let appReducer: ReduceFunction<AppState, AppAction, AppEnvironment> = { state, a
     case let .setSelectedListType(type):
         state.selectedListType = type
     }
+
+    return ActionResult.none
 }

@@ -15,10 +15,13 @@ enum ParseError: Error {
 }
 
 final class FileParser {
-    func parse(fileURL: URL) async throws -> (entries: [Entry], categories: [Category]) {
+    func parse(fileURL: URL) async throws -> (entries: [Entry], categories: [Category], bookmarkData: Data) {
         if fileURL.startAccessingSecurityScopedResource() {
             guard let input = String(data: try Data(contentsOf: fileURL), encoding: .utf8) else { throw ParseError.invalidInputFile }
             defer { fileURL.stopAccessingSecurityScopedResource() }
+
+            let bookmarkData = try fileURL.bookmarkData()
+
             let lines = input
                 .components(separatedBy: "\n")
             // TODO: Check if header is set correct
@@ -40,7 +43,7 @@ final class FileParser {
             }
 
             let categories = Array(categorySet).sorted { $0.title < $1.title }
-            return (entries, categories)
+            return (entries, categories, bookmarkData)
         } else {
             throw ParseError.accessDenied
         }

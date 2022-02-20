@@ -20,6 +20,10 @@ struct DETimeLogApp: App {
         reduceFunction: appReducer
     )
 
+    init() {
+        entryStore.send(.loadLastOpenedFile)
+    }
+
     var body: some Scene {
         WindowGroup {
             NavigationView {
