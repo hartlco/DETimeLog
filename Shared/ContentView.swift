@@ -11,10 +11,12 @@ struct ContentView: View {
     @EnvironmentObject var entryStore: EntryViewStore
     @EnvironmentObject var appStore: AppViewStore
 
+    let listType: ListType
+
     var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading) {
-                ForEach(entryStore.entries) { entry in
+                ForEach(entryStore.entries(for: listType)) { entry in
                     VStack(alignment: .leading) {
                         HStack {
                             VStack(alignment: .leading) {
@@ -44,12 +46,11 @@ struct ContentView: View {
             }
         }
         .fileImporter(
-            isPresented: appStore.isOpeningFileBinding,
+            isPresented: appStore.binding(get: \.isOpeningFile, send: { .isShowingFileOpener($0) }),
             allowedContentTypes: [.plainText],
             allowsMultipleSelection: false
         ) { result in
             do {
-                // TODO: Reopen last opened file
                 guard let selectedFile: URL = try result.get().first else { return }
                 entryStore.send(.load(fileURL: selectedFile))
             } catch {
@@ -72,6 +73,6 @@ struct ContentView: View {
 // TODO: Add preview mock data
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(listType: .all)
     }
 }

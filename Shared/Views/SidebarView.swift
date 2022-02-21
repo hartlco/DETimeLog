@@ -10,16 +10,29 @@ import SwiftUIX
 
 struct SidebarView: View {
     @EnvironmentObject var appStore: AppViewStore
+    @EnvironmentObject var entriesViewStore: EntryViewStore
 
     var body: some View {
         List(selection: appStore.binding(get: \.selectedListType, send: { .setSelectedListType($0) })) {
             Section("Entries") {
                 NavigationLink(
-                    destination: ContentView()
+                    destination: ContentView(listType: .all)
                 ) {
                     Label("All", systemImage: "tray.2")
                 }
                 .tag(ListType.all)
+            }
+            Section("Filtered") {
+                DisclosureGroup("Days") {
+                    ForEach(entriesViewStore.days) { day in
+                        NavigationLink(
+                            destination: ContentView(listType: .filtered(day: day))
+                        ) {
+                            Text(day.dateString)
+                        }
+                        .tag(ListType.filtered(day: day))
+                    }
+                }
             }
             Section("Categories") {
                 NavigationLink(

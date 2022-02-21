@@ -28,7 +28,7 @@ struct CategoriesView: View {
                 )
         }
         .fileImporter(
-            isPresented: appStore.isOpeningFileBinding,
+            isPresented: appStore.binding(get: \.isOpeningFile, send: { .isShowingFileOpener($0) }),
             allowedContentTypes: [.plainText],
             allowsMultipleSelection: false
         ) { result in

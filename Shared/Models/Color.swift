@@ -39,6 +39,11 @@ extension CGColor {
 
     var hexString: String {
         let components = components
+
+        guard components?.count == 3 else {
+            return ""
+        }
+
         let r: CGFloat = components?[0] ?? 0.0
         let g: CGFloat = components?[1] ?? 0.0
         let b: CGFloat = components?[2] ?? 0.0

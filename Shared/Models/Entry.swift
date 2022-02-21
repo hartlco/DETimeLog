@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Entry: Identifiable {
+struct Entry: Identifiable, Equatable, Hashable {
     var date: Date
     // TODO: make sub-type
     var category: Category

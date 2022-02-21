@@ -5,6 +5,7 @@
 //  Created by martinhartl on 15.02.22.
 //
 
+@_predatesConcurrency
 import Foundation
 import SwiftUI
 import ViewStore
@@ -13,16 +14,18 @@ typealias EntryViewStore = ViewStore<EntryState, EntryAction, EntryEnvironment>
 
 enum ListType: Hashable, Equatable {
     case all
+    case filtered(day: Day)
     case categories
 }
 
-struct EntryState {
+struct EntryState: Sendable {
     var entries: [Entry] = []
     var categories: [Category] = []
     var colorsByCategory: [Category: CGColor] = [:]
+    var days: [Day] = []
 }
 
-enum EntryAction {
+enum EntryAction: Sendable {
     case loadLastOpenedFile
     case load(fileURL: URL)
     case categoryColorAction(Category, CategoryColorAction)
@@ -52,6 +55,7 @@ let entryReducer: ReduceFunction<EntryState, EntryAction, EntryEnvironment> = { 
             state.entries = parseResult.entries
             state.categories = parseResult.categories
             state.colorsByCategory = environment.colorStore.colors(for: parseResult.categories)
+            state.days = days(from: parseResult.entries)
             environment.userDefaults.lastOpenedBookmarkData = parseResult.bookmarkData
         } catch {
             // TODO: Error handling
@@ -67,6 +71,23 @@ let entryReducer: ReduceFunction<EntryState, EntryAction, EntryEnvironment> = { 
     return .none
 }
 
+func days(from entries: [Entry]) -> [Day] {
+    let result = entries.reduce(into: [String: [Entry]]()) { partialResult, entry in
+        let dateString = entry.date.formatted(date: .numeric, time: .omitted)
+        var entries = partialResult[dateString] ?? []
+        entries.append(entry)
+        partialResult[dateString] = entries
+    }
+
+    return result
+        .map { key, value in
+            Day(dateString: key, entries: value)
+        }
+        .sorted { day1, day2 in
+            day1.dateString < day2.dateString
+        }
+}
+
 extension UserDefaults {
     var lastOpenedBookmarkData: Data? {
         get {
@@ -74,6 +95,23 @@ extension UserDefaults {
         }
         set {
             set(newValue, forKey: #function)
+        }
+    }
+}
+
+extension EntryViewStore {
+    func entries(for listType: ListType) -> [Entry] {
+        switch listType {
+        case .all:
+            return entries
+        case .filtered(let day):
+            let foundDay = self.days.first {
+                day == $0
+            }
+
+            return foundDay?.entries ?? []
+        case .categories:
+            return []
         }
     }
 }

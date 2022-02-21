@@ -11,13 +11,6 @@ import ViewStore
 
 typealias AppViewStore = ViewStore<AppState, AppAction, AppEnvironment>
 
-extension AppViewStore {
-    @MainActor
-    var isOpeningFileBinding: Binding<Bool> {
-        binding(get: \.isOpeningFile, send: { .isShowingFileOpener($0) })
-    }
-}
-
 struct AppState {
     var selectedListType: ListType? = .all
     var isOpeningFile = false

@@ -11,7 +11,7 @@ struct InitialContentView: View {
     var body: some View {
         // TODO: Handle iOS Presentation
         SidebarView()
-        ContentView()
+        ContentView(listType: .all)
     }
 }
 
