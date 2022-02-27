@@ -12,20 +12,37 @@ struct CategoriesView: View {
     @EnvironmentObject var entryStore: EntryViewStore
 
     var body: some View {
-        List(entryStore.categories) { category in
-            CategoryView()
-                .environmentObject(
-                    entryStore.scope(
-                        state: { state in
-                            return CategoryColorState(
-                                category: category,
-                                color: entryStore.colorsByCategory[category] ?? CGColor.init(gray: 0.3, alpha: 1.0)
+        NavigationView {
+            List(
+                entryStore.categories,
+                selection: appStore.binding(get: \.selectedCategory, send: { .setSelectedCategory($0) })
+            ) { category in
+                NavigationLink(
+                    destination: {
+                        ContentView(listType: .categoryFilter(category: category))
+                    }, label: {
+                        CategoryView()
+                            .environmentObject(
+                                entryStore.scope(
+                                    state: { state in
+                                        return CategoryColorState(
+                                            category: category,
+                                            color: entryStore.colorsByCategory[category] ?? CGColor.init(gray: 0.3, alpha: 1.0)
+                                        )
+                                    }, action: { action in
+                                        return .categoryColorAction(category, action)
+                                    }, scopedReducer: categoryColorReducer
+                                )
                             )
-                        }, action: { action in
-                            return .categoryColorAction(category, action)
-                        }, scopedReducer: categoryColorReducer
-                    )
+                    }
                 )
+                .tag(category)
+            }
+            if let selectedCategory = appStore.selectedCategory {
+                Text(selectedCategory.title)
+            } else {
+                ContentView(listType: .all)
+            }
         }
         .fileImporter(
             isPresented: appStore.binding(get: \.isOpeningFile, send: { .isShowingFileOpener($0) }),
@@ -63,7 +80,7 @@ struct CategoryView: View {
             Text(categoryColorViewStore.category.title)
             Spacer()
             ColorPicker(
-                "Color",
+                "",
                 selection: categoryColorViewStore.binding(get: \.color, send: { .changeColor(color: $0 ) })
             )
         }

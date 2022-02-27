@@ -13,6 +13,7 @@ typealias AppViewStore = ViewStore<AppState, AppAction, AppEnvironment>
 
 struct AppState {
     var selectedListType: ListType? = .all
+    var selectedCategory: Category?
     var isOpeningFile = false
 }
 
@@ -20,6 +21,7 @@ enum AppAction {
     case showFileOpener
     case isShowingFileOpener(Bool)
     case setSelectedListType(ListType?)
+    case setSelectedCategory(Category?)
 }
 
 struct AppEnvironment {
@@ -34,6 +36,8 @@ let appReducer: ReduceFunction<AppState, AppAction, AppEnvironment> = { state, a
         state.isOpeningFile = value
     case let .setSelectedListType(type):
         state.selectedListType = type
+    case let .setSelectedCategory(category):
+        state.selectedCategory = category
     }
 
     return ActionResult.none

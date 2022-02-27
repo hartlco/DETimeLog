@@ -15,6 +15,7 @@ typealias EntryViewStore = ViewStore<EntryState, EntryAction, EntryEnvironment>
 enum ListType: Hashable, Equatable {
     case all
     case filtered(day: Day)
+    case categoryFilter(category: Category)
     case categories
 }
 
@@ -110,6 +111,10 @@ extension EntryViewStore {
             }
 
             return foundDay?.entries ?? []
+        case let .categoryFilter(category):
+            return self.entries.filter {
+                $0.category == category
+            }
         case .categories:
             return []
         }
