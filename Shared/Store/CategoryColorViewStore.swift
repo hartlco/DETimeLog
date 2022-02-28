@@ -5,6 +5,10 @@
 //  Created by martinhartl on 19.02.22.
 //
 
+#if os(iOS)
+import UIKit
+#endif
+
 import Foundation
 import ViewStore
 

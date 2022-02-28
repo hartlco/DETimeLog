@@ -39,6 +39,10 @@
 		C579026427BB8CFA00B4AEAE /* FileParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C579026227BB8CFA00B4AEAE /* FileParser.swift */; };
 		C5A1CF3C27C3742600359C6C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A1CF3B27C3742600359C6C /* Day.swift */; };
 		C5A1CF3D27C3742600359C6C /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A1CF3B27C3742600359C6C /* Day.swift */; };
+		C5B797B827CCAA96000A1C7C /* EntriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B797B727CCAA96000A1C7C /* EntriesListView.swift */; };
+		C5B797B927CCAA96000A1C7C /* EntriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B797B727CCAA96000A1C7C /* EntriesListView.swift */; };
+		C5B797BB27CCACE5000A1C7C /* EntriesListDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B797BA27CCACE5000A1C7C /* EntriesListDetailsView.swift */; };
+		C5B797BC27CCACE5000A1C7C /* EntriesListDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B797BA27CCACE5000A1C7C /* EntriesListDetailsView.swift */; };
 		C5F57B0F27BE30CC008F3264 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F57B0E27BE30CC008F3264 /* AppStore.swift */; };
 		C5F57B1027BE30CC008F3264 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5F57B0E27BE30CC008F3264 /* AppStore.swift */; };
 /* End PBXBuildFile section */
@@ -61,6 +65,8 @@
 		C579025F27BB8CCC00B4AEAE /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		C579026227BB8CFA00B4AEAE /* FileParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileParser.swift; sourceTree = "<group>"; };
 		C5A1CF3B27C3742600359C6C /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
+		C5B797B727CCAA96000A1C7C /* EntriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesListView.swift; sourceTree = "<group>"; };
+		C5B797BA27CCACE5000A1C7C /* EntriesListDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntriesListDetailsView.swift; sourceTree = "<group>"; };
 		C5F57B0E27BE30CC008F3264 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -92,6 +98,8 @@
 				C53DA20227BF898700D86A71 /* InitialContentView.swift */,
 				C53DA20527BF8A5000D86A71 /* SidebarView.swift */,
 				C53DA20827BF97A800D86A71 /* CategoriesView.swift */,
+				C5B797B727CCAA96000A1C7C /* EntriesListView.swift */,
+				C5B797BA27CCACE5000A1C7C /* EntriesListDetailsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -283,12 +291,14 @@
 				C54CFF7A27C0CA5C009050B9 /* ColorStore.swift in Sources */,
 				C579025B27BB8CA900B4AEAE /* EntryStore.swift in Sources */,
 				C53DA20327BF898700D86A71 /* InitialContentView.swift in Sources */,
+				C5B797B827CCAA96000A1C7C /* EntriesListView.swift in Sources */,
 				C54CFF7727C0C929009050B9 /* Color.swift in Sources */,
 				C5F57B0F27BE30CC008F3264 /* AppStore.swift in Sources */,
 				C53DA20627BF8A5000D86A71 /* SidebarView.swift in Sources */,
 				C579024E27BB8C5D00B4AEAE /* ContentView.swift in Sources */,
 				C579024C27BB8C5D00B4AEAE /* DETimeLogApp.swift in Sources */,
 				C53DA20927BF97A800D86A71 /* CategoriesView.swift in Sources */,
+				C5B797BB27CCACE5000A1C7C /* EntriesListDetailsView.swift in Sources */,
 				C53DA1FC27BF88A000D86A71 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,12 +314,14 @@
 				C54CFF7B27C0CA5C009050B9 /* ColorStore.swift in Sources */,
 				C579025C27BB8CA900B4AEAE /* EntryStore.swift in Sources */,
 				C53DA20427BF898700D86A71 /* InitialContentView.swift in Sources */,
+				C5B797B927CCAA96000A1C7C /* EntriesListView.swift in Sources */,
 				C54CFF7827C0C929009050B9 /* Color.swift in Sources */,
 				C5F57B1027BE30CC008F3264 /* AppStore.swift in Sources */,
 				C53DA20727BF8A5000D86A71 /* SidebarView.swift in Sources */,
 				C579024F27BB8C5D00B4AEAE /* ContentView.swift in Sources */,
 				C579024D27BB8C5D00B4AEAE /* DETimeLogApp.swift in Sources */,
 				C53DA20A27BF97A800D86A71 /* CategoriesView.swift in Sources */,
+				C5B797BC27CCACE5000A1C7C /* EntriesListDetailsView.swift in Sources */,
 				C53DA1FD27BF88A000D86A71 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

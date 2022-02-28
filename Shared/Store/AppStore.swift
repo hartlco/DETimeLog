@@ -15,6 +15,7 @@ struct AppState {
     var selectedListType: ListType? = .all
     var selectedCategory: Category?
     var isOpeningFile = false
+    var isShowingListDetail = true
 }
 
 enum AppAction {
@@ -22,6 +23,7 @@ enum AppAction {
     case isShowingFileOpener(Bool)
     case setSelectedListType(ListType?)
     case setSelectedCategory(Category?)
+    case setShowListDetail(Bool)
 }
 
 struct AppEnvironment {
@@ -38,6 +40,8 @@ let appReducer: ReduceFunction<AppState, AppAction, AppEnvironment> = { state, a
         state.selectedListType = type
     case let .setSelectedCategory(category):
         state.selectedCategory = category
+    case let .setShowListDetail(value):
+        state.isShowingListDetail = value
     }
 
     return ActionResult.none

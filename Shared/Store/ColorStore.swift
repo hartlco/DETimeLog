@@ -5,8 +5,13 @@
 //  Created by martinhartl on 19.02.22.
 //
 
+#if os(iOS)
+import UIKit
+#endif
+
 import Foundation
 
+// TODO: Store in NSUbiquitousKeyValueStore
 final class ColorStore {
     let userDefaults: UserDefaults
 
