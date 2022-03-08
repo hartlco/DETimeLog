@@ -19,7 +19,7 @@ struct ContentView: View {
                 listType: listType
             )
             if appStore.isShowingListDetail {
-                EntriesListDetailsView()
+                EntriesListDetailsView(listType: listType)
                     .frame(maxHeight: .infinity)
             }
         }

@@ -119,4 +119,25 @@ extension EntryViewStore {
             return []
         }
     }
+
+    func categoryDurations(for listType: ListType) -> [CategoryDuration] {
+        let entries = entries(for: listType)
+
+
+        return entries.reduce(into: [CategoryDuration]()) { partialResult, entry in
+            let firstIndex = partialResult.firstIndex {
+                $0.category == entry.category
+            }
+
+            var existingDuration: CategoryDuration
+            if let firstIndex = firstIndex {
+                existingDuration = partialResult.remove(at: firstIndex)
+            } else {
+                existingDuration = CategoryDuration(category: entry.category, duration: 0)
+            }
+
+            existingDuration.duration = existingDuration.duration + (entry.duration ?? 0)
+            partialResult.append(existingDuration)
+        }
+    }
 }
