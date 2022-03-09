@@ -13,7 +13,7 @@ struct EntriesListDetailsView: View {
     let listType: ListType
 
     var body: some View {
-        Form {
+        List {
             ForEach(entryStore.categoryDurations(for: listType)) { categoryDuration in
                 HStack {
                     Text(categoryDuration.category.title)
