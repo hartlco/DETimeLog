@@ -23,14 +23,24 @@ struct SidebarView: View {
                 .tag(ListType.all)
             }
             Section("Filtered") {
+                DisclosureGroup("Months") {
+                    ForEach(entriesViewStore.months) { month in
+                        NavigationLink(
+                            destination: ContentView(listType: .filteredByMonth(month: month))
+                        ) {
+                            Text(month.dateString)
+                        }
+                        .tag(ListType.filteredByMonth(month: month))
+                    }
+                }
                 DisclosureGroup("Days") {
                     ForEach(entriesViewStore.days) { day in
                         NavigationLink(
-                            destination: ContentView(listType: .filtered(day: day))
+                            destination: ContentView(listType: .filteredByDay(day: day))
                         ) {
                             Text(day.dateString)
                         }
-                        .tag(ListType.filtered(day: day))
+                        .tag(ListType.filteredByDay(day: day))
                     }
                 }
             }

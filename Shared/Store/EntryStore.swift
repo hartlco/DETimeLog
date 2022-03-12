@@ -14,7 +14,8 @@ typealias EntryViewStore = ViewStore<EntryState, EntryAction, EntryEnvironment>
 
 enum ListType: Hashable, Equatable {
     case all
-    case filtered(day: Day)
+    case filteredByDay(day: Day)
+    case filteredByMonth(month: Month)
     case categoryFilter(category: Category)
     case categories
 }
@@ -24,6 +25,7 @@ struct EntryState: Sendable {
     var categories: [Category] = []
     var colorsByCategory: [Category: CGColor] = [:]
     var days: [Day] = []
+    var months: [Month] = []
 }
 
 enum EntryAction: Sendable {
@@ -57,6 +59,7 @@ let entryReducer: ReduceFunction<EntryState, EntryAction, EntryEnvironment> = { 
             state.categories = parseResult.categories
             state.colorsByCategory = environment.colorStore.colors(for: parseResult.categories)
             state.days = days(from: parseResult.entries)
+            state.months = months(from: parseResult.entries)
             environment.userDefaults.lastOpenedBookmarkData = parseResult.bookmarkData
         } catch {
             // TODO: Error handling
@@ -89,6 +92,23 @@ func days(from entries: [Entry]) -> [Day] {
         }
 }
 
+func months(from entries: [Entry]) -> [Month] {
+    let result = entries.reduce(into: [String: [Entry]]()) { partialResult, entry in
+        let dateString = entry.date.formatted(.dateTime.year().month())
+        var entries = partialResult[dateString] ?? []
+        entries.append(entry)
+        partialResult[dateString] = entries
+    }
+
+    return result
+        .map { key, value in
+            Month(dateString: key, entries: value)
+        }
+        .sorted { day1, day2 in
+            day1.dateString < day2.dateString
+        }
+}
+
 extension UserDefaults {
     var lastOpenedBookmarkData: Data? {
         get {
@@ -105,12 +125,18 @@ extension EntryViewStore {
         switch listType {
         case .all:
             return entries
-        case .filtered(let day):
+        case let .filteredByDay(day):
             let foundDay = self.days.first {
                 day == $0
             }
 
             return foundDay?.entries ?? []
+        case let .filteredByMonth(month):
+            let foundMonth = self.months.first {
+                month == $0
+            }
+
+            return foundMonth?.entries ?? []
         case let .categoryFilter(category):
             return self.entries.filter {
                 $0.category == category
