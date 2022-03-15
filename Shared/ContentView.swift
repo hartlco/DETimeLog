@@ -39,6 +39,13 @@ struct ContentView: View {
         .toolbar {
             ToolbarItem {
                 Button {
+                    entryStore.send(.insertTest)
+                } label: {
+                    Label("Add", systemImage: "plus.circle.fill")
+                }
+            }
+            ToolbarItem {
+                Button {
                     appStore.send(.showFileOpener)
                 } label: {
                     Label("Open", systemImage: "folder.badge.plus")

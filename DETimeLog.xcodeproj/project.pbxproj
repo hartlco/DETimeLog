@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C53C34D627E06FF000D46709 /* FileInserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53C34D527E06FF000D46709 /* FileInserter.swift */; };
+		C53C34D727E06FF000D46709 /* FileInserter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53C34D527E06FF000D46709 /* FileInserter.swift */; };
 		C53DA1FC27BF88A000D86A71 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA1FB27BF88A000D86A71 /* Category.swift */; };
 		C53DA1FD27BF88A000D86A71 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA1FB27BF88A000D86A71 /* Category.swift */; };
 		C53DA20327BF898700D86A71 /* InitialContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53DA20227BF898700D86A71 /* InitialContentView.swift */; };
@@ -50,6 +52,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C53C34D527E06FF000D46709 /* FileInserter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileInserter.swift; sourceTree = "<group>"; };
 		C53DA1FB27BF88A000D86A71 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		C53DA20227BF898700D86A71 /* InitialContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialContentView.swift; sourceTree = "<group>"; };
 		C53DA20527BF8A5000D86A71 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
@@ -134,6 +137,7 @@
 				C579023D27BB8C5B00B4AEAE /* ContentView.swift */,
 				C579023E27BB8C5D00B4AEAE /* Assets.xcassets */,
 				C579026227BB8CFA00B4AEAE /* FileParser.swift */,
+				C53C34D527E06FF000D46709 /* FileInserter.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -303,6 +307,7 @@
 				C579024E27BB8C5D00B4AEAE /* ContentView.swift in Sources */,
 				C579024C27BB8C5D00B4AEAE /* DETimeLogApp.swift in Sources */,
 				C53DA20927BF97A800D86A71 /* CategoriesView.swift in Sources */,
+				C53C34D627E06FF000D46709 /* FileInserter.swift in Sources */,
 				C5B797BB27CCACE5000A1C7C /* EntriesListDetailsView.swift in Sources */,
 				C53DA1FC27BF88A000D86A71 /* Category.swift in Sources */,
 			);
@@ -327,6 +332,7 @@
 				C579024F27BB8C5D00B4AEAE /* ContentView.swift in Sources */,
 				C579024D27BB8C5D00B4AEAE /* DETimeLogApp.swift in Sources */,
 				C53DA20A27BF97A800D86A71 /* CategoriesView.swift in Sources */,
+				C53C34D727E06FF000D46709 /* FileInserter.swift in Sources */,
 				C5B797BC27CCACE5000A1C7C /* EntriesListDetailsView.swift in Sources */,
 				C53DA1FD27BF88A000D86A71 /* Category.swift in Sources */,
 			);

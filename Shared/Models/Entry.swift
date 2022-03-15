@@ -67,4 +67,15 @@ extension Entry {
         self.title = components.count > 2 ? components[2] : ""
         self.description = components.count > 3 ? components[3] : ""
     }
+
+    var csvString: String {
+        let dateString = date.ISO8601Format()
+        let components = [
+            dateString,
+            category.title,
+            description
+        ]
+
+        return components.joined(separator: ",")
+    }
 }

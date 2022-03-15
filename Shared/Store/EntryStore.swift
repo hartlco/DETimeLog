@@ -26,12 +26,15 @@ struct EntryState: Sendable {
     var colorsByCategory: [Category: CGColor] = [:]
     var days: [Day] = []
     var months: [Month] = []
+
+    var lastOpenedFileURL: URL?
 }
 
 enum EntryAction: Sendable {
     case loadLastOpenedFile
     case load(fileURL: URL)
     case categoryColorAction(Category, CategoryColorAction)
+    case insertTest
 }
 
 struct EntryEnvironment {
@@ -51,6 +54,7 @@ let entryReducer: ReduceFunction<EntryState, EntryAction, EntryEnvironment> = { 
                 bookmarkDataIsStale: &isStale
               ) else { return .none }
 
+        state.lastOpenedFileURL = fileURL
         return .perform(.load(fileURL: fileURL))
     case let .load(fileURL):
         do {
@@ -69,6 +73,16 @@ let entryReducer: ReduceFunction<EntryState, EntryAction, EntryEnvironment> = { 
         case let .changeColor(color):
             environment.colorStore.set(color: color, for: category)
             state.colorsByCategory[category] = color
+        }
+    case .insertTest:
+        guard let lastOpenedFileURL = state.lastOpenedFileURL else {
+            return .none
+        }
+
+        do {
+            try FileInserter().append(string: "test", to: lastOpenedFileURL)
+        } catch {
+            print(error)
         }
     }
 
