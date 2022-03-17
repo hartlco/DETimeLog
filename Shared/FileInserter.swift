@@ -17,8 +17,6 @@ final class FileInserter {
             throw InsertError.accessDenied
         }
 
-        // TODO: Use FilePresenter: https://developer.apple.com/documentation/uikit/uidocumentpickerviewcontroller
-
         defer { fileURL.stopAccessingSecurityScopedResource() }
 
         try string.appendLineToURL(fileURL: fileURL)
@@ -28,7 +26,7 @@ final class FileInserter {
 // https://stackoverflow.com/a/40687742
 extension String {
     func appendLineToURL(fileURL: URL) throws {
-         try (self + "\n").appendToURL(fileURL: fileURL)
+         try ("\n" + self).appendToURL(fileURL: fileURL)
      }
 
      func appendToURL(fileURL: URL) throws {

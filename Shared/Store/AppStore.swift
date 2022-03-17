@@ -11,6 +11,13 @@ import ViewStore
 
 typealias AppViewStore = ViewStore<AppState, AppAction, AppEnvironment>
 
+#if DEBUG
+extension AppViewStore {
+    static let mock = AppViewStore(state: .init(), environment: .init(), reduceFunction: appReducer)
+}
+
+#endif
+
 struct AppState {
     var selectedListType: ListType? = .all
     var selectedCategory: Category?

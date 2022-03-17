@@ -80,7 +80,7 @@ let entryReducer: ReduceFunction<EntryState, EntryAction, EntryEnvironment> = { 
         }
 
         do {
-            try FileInserter().append(string: "test", to: lastOpenedFileURL)
+            try FileInserter().append(string: "test123", to: lastOpenedFileURL)
         } catch {
             print(error)
         }
