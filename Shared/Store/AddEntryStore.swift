@@ -17,11 +17,7 @@ enum AddEntryAction {
     case selectCategory(Category?)
 }
 
-struct AddEntryEnvironment {
-
-}
-
-let addEntryReducer: ReduceFunction<AddEntryState, AddEntryAction, AddEntryEnvironment> = { state, action, env in
+let addEntryReducer: ReduceFunction<AddEntryState, AddEntryAction, EntryEnvironment> = { state, action, env in
     switch action {
     case let .selectCategory(category):
         state.selectedCategory = category
@@ -30,7 +26,7 @@ let addEntryReducer: ReduceFunction<AddEntryState, AddEntryAction, AddEntryEnvir
     return .none
 }
 
-typealias AddEntryStore = ViewStore<AddEntryState, AddEntryAction, AddEntryEnvironment>
+typealias AddEntryStore = ViewStore<AddEntryState, AddEntryAction, EntryEnvironment>
 
 
 extension AddEntryStore {
@@ -41,7 +37,10 @@ extension AddEntryStore {
                 Category(title: "Productivity")
             ]
         ),
-        environment: .init(),
+        environment: .init(
+            fileParser: FileParser(),
+            colorStore: ColorStore(userDefaults: .standard)
+        ),
         reduceFunction: addEntryReducer
     )
 #endif

@@ -34,6 +34,7 @@ enum EntryAction: Sendable {
     case loadLastOpenedFile
     case load(fileURL: URL)
     case categoryColorAction(Category, CategoryColorAction)
+    case addEntryAction(AddEntryAction)
     case insertTest
 }
 
@@ -84,6 +85,8 @@ let entryReducer: ReduceFunction<EntryState, EntryAction, EntryEnvironment> = { 
         } catch {
             print(error)
         }
+    case let .addEntryAction(action):
+        break
     }
 
     return .none

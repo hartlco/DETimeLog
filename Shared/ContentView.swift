@@ -39,7 +39,7 @@ struct ContentView: View {
         .toolbar {
             ToolbarItem {
                 Button {
-                    entryStore.send(.insertTest)
+                    appStore.send(.showAddView)
                 } label: {
                     Label("Add", systemImage: "plus.circle.fill")
                 }
@@ -58,6 +58,20 @@ struct ContentView: View {
                     Label("Show Edit Link", systemImage: "sidebar.right")
                 }
             }
+        }
+        .popover(
+            isPresented: appStore.binding(get: \.isShowingAddView, send: { .setIsShowingAddView($0) })
+        ) {
+            AddEntryView()
+                .environmentObject(
+                    entryStore.scope(
+                        state: { state in
+                            return AddEntryState(availableCategories: state.categories)
+                        }, action: { action in
+                            return .addEntryAction(action)
+                        }, scopedReducer: addEntryReducer
+                    )
+                )
         }
     }
 }
