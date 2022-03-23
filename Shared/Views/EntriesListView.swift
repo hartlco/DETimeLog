@@ -9,7 +9,6 @@ import SwiftUI
 
 struct EntriesListView: View {
     @EnvironmentObject var entryStore: EntryViewStore
-    @EnvironmentObject var appStore: AppViewStore
 
     let listType: ListType
 

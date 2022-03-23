@@ -59,7 +59,7 @@ struct ContentView: View {
                 }
             }
         }
-        .popover(
+        .sheet(
             isPresented: appStore.binding(get: \.isShowingAddView, send: { .setIsShowingAddView($0) })
         ) {
             AddEntryView()
@@ -73,6 +73,7 @@ struct ContentView: View {
                     )
                 )
         }
+        .equatable(by: appStore.isShowingAddView)
     }
 }
 
